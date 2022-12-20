@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  MusicPlayer
+//  MusicPlr
 //
-//  Created by Denys Polishchuk on 20.12.2022.
+//  Created by Denis Polishchuk on 28.08.2022.
 //
 
 import UIKit
@@ -10,10 +10,13 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        self.pathDirectory()
         // Override point for customization after application launch.
+        if UIImage.init(contentsOfFile: UIImage.nameSelectedImage.path) == nil {
+            let image = UIImage(named: "nightMountain.jpeg")
+            image?.saveImageToFile()
+        }
         return true
     }
 
@@ -30,7 +33,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+}
 
+// MARK: - Path Directory
 
+extension AppDelegate {
+    
+    fileprivate func pathDirectory() {
+        let path = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)
+        let p = path[path.count - 1]
+    }
 }
 
